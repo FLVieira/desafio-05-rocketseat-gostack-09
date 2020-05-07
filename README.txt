@@ -5,3 +5,5 @@
 5 - Adicionando Repositórios
 6 - Listando Repositórios
 7 - Utilizando LocalStorage
+8 - Navegação pra rota /repository
+9 - Carregando dados da api do GitHub
