@@ -8,4 +8,5 @@
 8 - Navegação pra rota /repository
 9 - Carregando dados da api do GitHub
 10 - Definindo PropTypes
-11 -
+11 - Exibindo Repositórios
+12 - Exibindo Issues
