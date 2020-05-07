@@ -2,3 +2,5 @@
 2 - Roteamento
 3 - Styled Components
 4 - Estilos Globais
+5 - Adicionando Repositórios
+6 - Listando Repositórios
