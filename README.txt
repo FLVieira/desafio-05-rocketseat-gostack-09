@@ -1,0 +1,1 @@
+1 - Eslint, .editorconfig e prettier. 
