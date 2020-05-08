@@ -1,10 +1,16 @@
 import React from 'react';
 import { FaGithubAlt, FaPlus, FaSpinner } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import api from '../../services/api';
 import { Form, SubmitButton, List } from './styles';
 import Container from '../../components/Container';
+
+function RepositórioDuplicado() {
+  this.name = 'Repositório Duplicado';
+}
+RepositórioDuplicado.prototype = new Error();
 
 export default class Main extends React.Component {
   state = {
@@ -35,18 +41,33 @@ export default class Main extends React.Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    this.setState({ loading: true });
-    const { newRepo, repositories } = this.state;
-    const response = await api.get(`/repos/${newRepo}`);
-    const data = {
-      name: response.data.full_name,
-    };
-
-    this.setState({
-      repositories: [...repositories, data],
-      newRepo: '',
-      loading: false,
-    });
+    try {
+      const { newRepo, repositories } = this.state;
+      if (repositories.some((repository) => repository.name === newRepo)) {
+        throw new RepositórioDuplicado();
+      }
+      this.setState({ loading: true });
+      const response = await api.get(`/repos/${newRepo}`);
+      const data = {
+        name: response.data.full_name,
+      };
+      this.setState({
+        repositories: [...repositories, data],
+        newRepo: '',
+        loading: false,
+      });
+      return;
+    } catch (err) {
+      this.setState({
+        newRepo: '',
+        loading: false,
+      });
+      if (err.name === 'Repositório Duplicado') {
+        toast.error(err.name);
+      } else {
+        toast.error('Repositório não encontrado.');
+      }
+    }
   };
 
   render() {
@@ -79,7 +100,7 @@ export default class Main extends React.Component {
 
         <List>
           {repositories.map((repository) => (
-            <li key={repository.name}>
+            <li key={Math.random()}>
               <span>{repository.name}</span>
               <Link to={`/repository/${encodeURIComponent(repository.name)}`}>
                 Detalhes

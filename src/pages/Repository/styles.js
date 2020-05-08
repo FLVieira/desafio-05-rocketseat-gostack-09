@@ -101,3 +101,37 @@ export const IssueList = styled.ul`
     }
   }
 `;
+
+export const Button = styled.button`
+  background: #7159c1;
+  color: white;
+  border: 0;
+  padding: 3px 15px;
+  margin-left: 10px;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    border: 0.5px solid #7e28d4;
+    color: #eee;
+  }
+`;
+
+export const IssuesFilter = styled.div`
+  padding-top: 30px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+`;
+
+export const PrevButton = styled(Button)`
+  position: absolute;
+  left: 345px;
+`;
+
+export const NextButton = styled(Button)`
+  position: absolute;
+  right: 345px;
+`;
