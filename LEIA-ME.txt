@@ -10,3 +10,4 @@
 10 - Definindo PropTypes
 11 - Exibindo Repositórios
 12 - Exibindo Issues
+13 - Adicionando paginação e filtro para issues.
